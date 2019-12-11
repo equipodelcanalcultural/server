@@ -55,7 +55,7 @@ router.put("/api/itineraries/byTitle/:title", function(req, res) {
 
 router.put("/api/itineraries/byTitle/:title/comments", async (req, res) => {
   let comment = {
-    _id: new ObjectID(),
+    id: new ObjectID(),
     username: req.body.username,
     text: req.body.text
   }
@@ -70,7 +70,7 @@ router.put("/api/itineraries/byTitle/:title/comments", async (req, res) => {
 router.put("/api/itineraries/byTitle/:title/comments/update", async (req, res) => {
 
   await itinerary.updateOne(
-    { title: req.params.title, "comments._id": req.body._id}, 
+    { title: req.params.title, "comments._id": req.body.id}, 
     { $set: {"comments.$.text": req.body.text}}
   )
   res.json(req.body.text);
