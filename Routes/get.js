@@ -152,7 +152,7 @@ const genericGetAll = (uri, model) => {
     let itinerarioBuscado = req.params.title;
     itinerary
       .find({ title: itinerarioBuscado }, { _id: 0, title: 1, comments: 1 })
-      .then(comments => res.json({comments:comments, cantidad: comments[0].comments.length}))
+      .then(comments => res.json({comments:comments}))
       .catch(err => console.log(err));
   });
 
